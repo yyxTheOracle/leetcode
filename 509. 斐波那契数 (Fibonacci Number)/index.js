@@ -15,7 +15,7 @@
 // 3. 初始化 dp 数组： dp[0] = 0， dp[1] = 1
 // 4. 确定遍历顺序： dp[i] 是依赖 dp[i - 1] 和 dp[i - 2] ，所以遍历的顺序是从前到后遍历
 var fib = function(n) {
-  let dp = new Array(n+1);
+  let dp = new Array(n + 1);
   dp[0] = 0;
   dp[1] = 1;
   for (let i = 2; i <= n ; i++) {
