@@ -22,5 +22,4 @@ var climbStairs = function(n) {
   return dp[n];
 };
 
-// console.log(climbStairs(30)) // 832040 
-console.log(climbStairs(30)) // 832040 
+console.log(climbStairs(30)) // 1346269 

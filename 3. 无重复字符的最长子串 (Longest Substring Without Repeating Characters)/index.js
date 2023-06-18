@@ -66,26 +66,26 @@ var lengthOfLongestSubstring2 = function(s) {
     return maxLen;
 };
 
-// 自己写的滑动窗口
+// 自己写的滑动窗口————注意滑动窗口的判断条件：while (right < s.length)
 var lengthOfLongestSubstring = function(s) {
-  if (s === "") return 0;
-  let i = 0; let j = 1; let maxLen = 1;
-  while (j < s.length) {
-      let cur = s.slice(i, j); 
-      if (cur.indexOf(s[j]) !== -1) {
-				i++;
-				j = i + 1;
+  if (s.length <= 1) return s.length;
+  let left = 0; let right = 1; let maxLen = 1;
+  while (right < s.length) {
+      let cur = s.slice(left, right); // 截到 right 前一位;
+      if (cur.indexOf(s[right]) !== -1) {
+				left++;
+				right = left + 1; // 注意：更新 right, 从 left 的下一位开始
        }else {
-				cur += s[j]; 
-				if (cur.length > maxLen) maxLen = cur.length;
-				j++;
+				cur += s[right]; 
+        maxLen = Math.max(maxLen, cur.length);
+				right++;
       } 
   }
   return maxLen;
 };
 
-console.log(lengthOfLongestSubstring("abcabcbb")); // 3
-console.log(lengthOfLongestSubstring("bbbbbb")); // 1
-console.log(lengthOfLongestSubstring("pwwkew")); // 3
-console.log(lengthOfLongestSubstring("dvdf")); // 3
+console.log(lengthOfLongestSubstring("abcabcbb")); // abc 3  
+console.log(lengthOfLongestSubstring("bbbbbb")); // b 1
+console.log(lengthOfLongestSubstring("pwwkew")); // wke 3
+console.log(lengthOfLongestSubstring("dvdf")); // vdf 3
 

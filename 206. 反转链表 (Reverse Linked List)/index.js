@@ -10,7 +10,7 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-  let prev = null;
+  let prev = null; // 不能是 undefined，否则会报错
   let curr = head;
   while(curr) {
       const next = curr.next;
@@ -18,5 +18,5 @@ var reverseList = function(head) {
       prev = curr;
       curr =  next
   }
-  return prev;
+  return prev; // 注意这里
 };

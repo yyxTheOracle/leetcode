@@ -16,7 +16,7 @@
  * 
  * 注意不能用...来深拷贝，否则无法识别nums1的新地址
  */
-var merge1 = function(nums1, m, nums2, n) {
+var merge2 = function(nums1, m, nums2, n) {
   if (!(nums2.length) || !n) return;
 
   for (let i = m; i < m + n; i++) {
@@ -70,6 +70,7 @@ var merge2 = function(nums1, m, nums2, n) {
     console.log(nums1);
 };
 
-// merge2([1,2,3,0,0,0], 3, [2,5,6], 3)
-// merge2([2,0], 1, [1], 1)
-merge2([0], 0, [1], 1)
+merge([1,2,3,0,0,0], 3, [2,5,6], 3); // [1, 2, 2, 3, 5, 6]
+merge([2,0], 1, [1], 1); // [1]
+merge([0], 0, [1], 1); // [1]
+merge([3, 4, 0, 0], 2, [1, 2], 2); // [1, 2, 3, 4]

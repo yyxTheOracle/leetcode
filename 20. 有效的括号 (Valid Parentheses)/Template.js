@@ -24,7 +24,7 @@ function isRightBracket(s) {
   return s===']' || s==='}' || s===')';
 }
 
-var isValid = function(s) {
+var isValid = function(s = "") {
 
 };
 
