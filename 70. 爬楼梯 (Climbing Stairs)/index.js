@@ -10,8 +10,8 @@
   4. 确定遍历顺序： dp[i] 是依赖 dp[i - 1] 和 dp[i - 2] ，所以遍历的顺序是从前到后遍历
 */
 
-var climbStairs = function(n) {
-  if(n < 3) return n;
+var climbStairs = function (n) {
+  if (n < 3) return n;
   let dp = new Array(n + 1);
   dp[0] = 1;
   dp[1] = 1;
@@ -22,4 +22,4 @@ var climbStairs = function(n) {
   return dp[n];
 };
 
-console.log(climbStairs(30)) // 1346269 
+console.log(climbStairs(30)); // 1346269

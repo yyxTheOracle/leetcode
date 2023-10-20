@@ -12,25 +12,26 @@
  * 时间复杂度：O(n)，n 代表字符串长度，reduce 会将字符串的每一个字符都遍历一遍
  * 空间复杂度：O(n)，n 代表字符串长度，将字符串转成了数组（额外空间）
  */
-var lengthOfLongestSubstring1 = function(s) {
-    if (s.length <= 1) return s.length
-    let strArr = s.split('');
-    let maxLen = 0;
+var lengthOfLongestSubstring1 = function (s) {
+  if (s.length <= 1) return s.length;
+  let strArr = s.split("");
+  let maxLen = 0;
 
-    strArr.reduce((total, cur) => { 
-        const idx = total.indexOf(cur);
-        total += cur;// 拼接到最新子串尾部
-    
-        if (idx === -1) { // 如果最新的无重复最长子串没有 cur 字符
-            maxLen = Math.max(maxLen, total.length);// 更新 maxLen
-        }else {
-            total = total.slice(idx + 1); // 从相同字符的下一位开始截，细节要注意
-        }
+  strArr.reduce((total, cur) => {
+    const idx = total.indexOf(cur);
+    total += cur; // 拼接到最新子串尾部
 
-        return total; // 成为下一次的 total
-    }, '')
+    if (idx === -1) {
+      // 如果最新的无重复最长子串没有 cur 字符
+      maxLen = Math.max(maxLen, total.length); // 更新 maxLen
+    } else {
+      total = total.slice(idx + 1); // 从相同字符的下一位开始截，细节要注意
+    }
 
-    return maxLen;
+    return total; // 成为下一次的 total
+  }, "");
+
+  return maxLen;
 };
 
 /**
@@ -44,48 +45,49 @@ var lengthOfLongestSubstring1 = function(s) {
  * 时间复杂度：O(n)，外循环窗口右界从数组首右移到数组尾，内循环窗口左界同样如此，因此复杂度为O(n + n) = O(n)
  * 空间复杂度：O(n)，最坏情况整个数组都是不重复的，哈希表的长度就是数组长度
  */
-var lengthOfLongestSubstring2 = function(s) {
-    if (s.length <= 1) return s.length;
-    let map = new Map();
-    let maxLen = 0;
-   
-    for (let left = 0, right = 0; right < s.length; right++) {
-        if (map.has(s[right])) {
-            map.set(s[right], map.get(s[right]) + 1);
-        }else {
-            map.set(s[right], 1);
-        }
+var lengthOfLongestSubstring2 = function (s) {
+  if (s.length <= 1) return s.length;
+  let map = new Map();
+  let maxLen = 0;
 
-        while (map.get(s[right]) > 1) {
-            map.set(s[left], map.get(s[left]) - 1);
-            left++;
-        }
-        maxLen = Math.max(maxLen, right - left + 1); // 每轮循环维护一个maxLen 
+  for (let left = 0, right = 0; right < s.length; right++) {
+    if (map.has(s[right])) {
+      map.set(s[right], map.get(s[right]) + 1);
+    } else {
+      map.set(s[right], 1);
     }
 
-    return maxLen;
+    while (map.get(s[right]) > 1) {
+      map.set(s[left], map.get(s[left]) - 1);
+      left++;
+    }
+    maxLen = Math.max(maxLen, right - left + 1); // 每轮循环维护一个maxLen
+  }
+
+  return maxLen;
 };
 
 // 自己写的滑动窗口————注意滑动窗口的判断条件：while (right < s.length)
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
   if (s.length <= 1) return s.length;
-  let left = 0; let right = 1; let maxLen = 1;
+  let left = 0;
+  let right = 1;
+  let maxLen = 1;
   while (right < s.length) {
-      let cur = s.slice(left, right); // 截到 right 前一位;
-      if (cur.indexOf(s[right]) !== -1) {
-				left++;
-				right = left + 1; // 注意：更新 right, 从 left 的下一位开始
-       }else {
-				cur += s[right]; 
-        maxLen = Math.max(maxLen, cur.length);
-				right++;
-      } 
+    let cur = s.slice(left, right); // 截到 right 前一位;
+    if (cur.indexOf(s[right]) !== -1) {
+      left++;
+      right = left + 1; // 注意：更新 right, 从 left 的下一位开始
+    } else {
+      cur += s[right];
+      maxLen = Math.max(maxLen, cur.length);
+      right++;
+    }
   }
   return maxLen;
 };
 
-console.log(lengthOfLongestSubstring("abcabcbb")); // abc 3  
+console.log(lengthOfLongestSubstring("abcabcbb")); // abc 3
 console.log(lengthOfLongestSubstring("bbbbbb")); // b 1
 console.log(lengthOfLongestSubstring("pwwkew")); // wke 3
 console.log(lengthOfLongestSubstring("dvdf")); // vdf 3
-

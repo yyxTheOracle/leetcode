@@ -13,17 +13,17 @@
  * （2）将 B shift 填到 A 尾部的扩容区域，然后用 sort 排序
  * 时间复杂度：O(nlogn)， JS sort 方法基于快速排序实现
  * 空间复杂度：O(1)，常数级变量，无额外空间
- * 
+ *
  * 注意不能用...来深拷贝，否则无法识别nums1的新地址
  */
-var merge2 = function(nums1, m, nums2, n) {
-  if (!(nums2.length) || !n) return;
+var merge2 = function (nums1, m, nums2, n) {
+  if (!nums2.length || !n) return;
 
   for (let i = m; i < m + n; i++) {
-    nums1[i] = nums2.shift() // 替换掉 nums1 中的 0
+    nums1[i] = nums2.shift(); // 替换掉 nums1 中的 0
   }
-  
-  nums1.sort((a, b) => a - b );
+
+  nums1.sort((a, b) => a - b);
 
   console.log(nums1);
 };
@@ -38,39 +38,39 @@ var merge2 = function(nums1, m, nums2, n) {
  * 时间复杂度：O(m + n)，最坏情况遍历整个数组 A 和 数组 B
  * 空间复杂度：O(1)，常数级变量，无额外空间
  */
-var merge2 = function(nums1, m, nums2, n) {
-    if (!nums2.length || !n) return
-    if (!nums1.length || !m) {
-      for (let i = 0; i < n; i++) {
-        nums1[i] = nums2.shift()
-      }
-      console.log(nums1);
-      return;
+var merge2 = function (nums1, m, nums2, n) {
+  if (!nums2.length || !n) return;
+  if (!nums1.length || !m) {
+    for (let i = 0; i < n; i++) {
+      nums1[i] = nums2.shift();
     }
-
-    let aIdx = m - 1; // 指向数组 nums1 的结尾
-    let bIdx = n - 1; // 指向数组 nums2 的结尾
-    let mIdx = m + n - 1; // 指向数组 nums1 空间的结尾
-
-    while (aIdx >= 0 && bIdx >= 0 ) {
-      if (nums1[aIdx] >= nums2[bIdx]) {
-        nums1[mIdx--] = nums1[aIdx--];
-      } else {
-        nums1[mIdx--] = nums2[bIdx--];
-      }
-    }
-
-    // 数组 nums1 遍历完，nums2 还有
-    if (aIdx < 0) {
-      while (bIdx >= 0) {
-        nums1[mIdx--] = nums2[bIdx--];
-      }        
-    }
-
     console.log(nums1);
+    return;
+  }
+
+  let aIdx = m - 1; // 指向数组 nums1 的结尾
+  let bIdx = n - 1; // 指向数组 nums2 的结尾
+  let mIdx = m + n - 1; // 指向数组 nums1 空间的结尾
+
+  while (aIdx >= 0 && bIdx >= 0) {
+    if (nums1[aIdx] >= nums2[bIdx]) {
+      nums1[mIdx--] = nums1[aIdx--];
+    } else {
+      nums1[mIdx--] = nums2[bIdx--];
+    }
+  }
+
+  // 数组 nums1 遍历完，nums2 还有
+  if (aIdx < 0) {
+    while (bIdx >= 0) {
+      nums1[mIdx--] = nums2[bIdx--];
+    }
+  }
+
+  console.log(nums1);
 };
 
-merge([1,2,3,0,0,0], 3, [2,5,6], 3); // [1, 2, 2, 3, 5, 6]
-merge([2,0], 1, [1], 1); // [1]
+merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3); // [1, 2, 2, 3, 5, 6]
+merge([2, 0], 1, [1], 1); // [1]
 merge([0], 0, [1], 1); // [1]
 merge([3, 4, 0, 0], 2, [1, 2], 2); // [1, 2, 3, 4]

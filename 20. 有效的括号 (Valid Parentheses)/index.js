@@ -13,31 +13,34 @@
  * 空间复杂度：O(n)，最坏情况下栈空间记录整个字符串长度的右括号
  */
 function isMatch(left, right) {
-  if ((left === '{' && right === '}') 
-  || (left === '[' && right === ']') 
-  || (left === '(' && right === ')')) return true;
+  if (
+    (left === "{" && right === "}") ||
+    (left === "[" && right === "]") ||
+    (left === "(" && right === ")")
+  )
+    return true;
 
   return false;
 }
 
 function isLeftBracket(s) {
-  return s==='[' || s==='{' || s==='(';
+  return s === "[" || s === "{" || s === "(";
 }
 
 function isRightBracket(s) {
-  return s===']' || s==='}' || s===')';
+  return s === "]" || s === "}" || s === ")";
 }
 
-var isValid = function(s) {
+var isValid = function (s) {
   let stack = [];
 
-  let inputArr = s.split('');
+  let inputArr = s.split("");
 
   for (let i = 0; i < inputArr.length; i++) {
     if (isLeftBracket(inputArr[i])) stack.push(inputArr[i]);
 
     if (isRightBracket(inputArr[i])) {
-      let top = stack.pop()
+      let top = stack.pop();
       if (!isMatch(top, inputArr[i])) return false;
     }
   }
@@ -45,6 +48,6 @@ var isValid = function(s) {
   return stack.length === 0;
 };
 
-console.log(isValid('()[]{}'));
-console.log(isValid('()'));
-console.log(isValid('([)]'));
+console.log(isValid("()[]{}")); // true
+console.log(isValid("()")); // true
+console.log(isValid("([)]")); // false

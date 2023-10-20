@@ -9,25 +9,26 @@
  * 空间复杂度：O(n)，最坏情况下栈空间记录整个字符串长度的右括号
  */
 function isMatch(left, right) {
-  if ((left === '{' && right === '}') 
-  || (left === '[' && right === ']') 
-  || (left === '(' && right === ')')) return true;
+  if (
+    (left === "{" && right === "}") ||
+    (left === "[" && right === "]") ||
+    (left === "(" && right === ")")
+  )
+    return true;
 
   return false;
 }
 
 function isLeftBracket(s) {
-  return s==='[' || s==='{' || s==='(';
+  return s === "[" || s === "{" || s === "(";
 }
 
 function isRightBracket(s) {
-  return s===']' || s==='}' || s===')';
+  return s === "]" || s === "}" || s === ")";
 }
 
-var isValid = function(s = "") {
+var isValid = function (s = "") {};
 
-};
-
-console.log(isValid('()[]{}'));
-console.log(isValid('()'));
-console.log(isValid('([)]'));
+console.log(isValid("()[]{}")); // true
+console.log(isValid("()")); // true
+console.log(isValid("([)]")); // false

@@ -2,8 +2,6 @@
  * @param {number} n
  * @return {number}
  */
-var fib = function(n) {
+var fib = function (n) {};
 
-};
-
-console.log(fib(30)) // 832040
+console.log(fib(30)); // 832040

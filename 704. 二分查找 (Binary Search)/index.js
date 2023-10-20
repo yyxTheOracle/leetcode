@@ -19,11 +19,11 @@ var search = function (nums, target) {
     }
 
     if (nums[mid] < target) {
-      left = mid + 1
+      left = mid + 1;
     }
   }
 
   return -1; // 注意这里
 };
 
-console.log(search([-1, 0, 3, 5, 9, 12], 9)) // 4
+console.log(search([-1, 0, 3, 5, 9, 12], 9)); // 4

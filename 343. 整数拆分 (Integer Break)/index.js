@@ -11,7 +11,7 @@
   3. 遍历所有的 j，i - j 可以选择拆或不拆，不拆就是 i - j，拆就是 dp[i - j]，其实就是对 i - j 调用的结果，
   （子问题的解）
 */
-var integerBreak = function(n) {
+var integerBreak = function (n) {
   const dp = new Array(n + 1);
 
   dp[1] = dp[2] = 1;
@@ -21,7 +21,7 @@ var integerBreak = function(n) {
     // 从 1 开始拆，举例子能更好地理解这段代码
     for (let j = 1; j <= i - j; j++) {
       // j * (i - j) 就是拆成 2 个数，j * dp[i - j] 就是拆成 3 个及以上的数
-      dp[i] = Math.max(j * (i - j), j * dp[i - j], dp[i])
+      dp[i] = Math.max(j * (i - j), j * dp[i - j], dp[i]);
     }
   }
 
