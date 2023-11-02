@@ -1,0 +1,14 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "我的刷题仓库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor Ye",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.21"
+  }
+}
