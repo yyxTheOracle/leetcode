@@ -14,12 +14,14 @@
 var integerBreak = function (n) {
   const dp = new Array(n + 1);
 
-  dp[1] = dp[2] = 1;
+  dp[0]=dp[1]=0
+  dp[2] = 1;
 
   for (let i = 3; i <= n; i++) {
+    // dp[i]在循环中取了很多次最大值
     dp[i] = 0;
     // 从 1 开始拆，举例子能更好地理解这段代码
-    for (let j = 1; j <= i - j; j++) {
+    for (let j = 1; j < i ; j++) {
       // j * (i - j) 就是拆成 2 个数，j * dp[i - j] 就是拆成 3 个及以上的数
       dp[i] = Math.max(j * (i - j), j * dp[i - j], dp[i]);
     }
